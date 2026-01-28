@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Theme Editor</title>
+    <style>
+        :root {
+            --bg: #1a1b26;
+            --text: #a9b1d6;
+            --accent: #7aa2f7;
+            --panel: #24283b;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, sans-serif;
+            padding: 20px;
+            margin: 0;
+            user-select: none;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 0.85rem;
+        }
+
+        input[type="color"] {
+            border: none;
+            width: 40px;
+            height: 25px;
+            cursor: pointer;
+            background: none;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            background: var(--panel);
+            border: 1px solid var(--accent);
+            color: var(--text);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hex-input {
+            width: 70px;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid var(--accent);
+            background: transparent;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        button.primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <h3>General</h3>
+        <div class="row">
+            <label>Theme Name</label>
+            <input type="text" id="theme-name" placeholder="My Dark Theme">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Colors</h3>
+        <div class="row">
+            <label>Background</label>
+            <div class="input-group">
+                <input type="text" id="hex-bg" class="hex-input" placeholder="#000000">
+                <input type="color" id="color-bg" value="#0f1117">
+            </div>
+        </div>
+        <div class="row">
+            <label>Panel</label>
+            <div class="input-group">
+                <input type="text" id="hex-panel" class="hex-input" placeholder="#000000">
+                <input type="color" id="color-panel" value="#161a23">
+            </div>
+        </div>
+        <div class="row">
+            <label>Text</label>
+            <div class="input-group">
+                <input type="text" id="hex-text" class="hex-input" placeholder="#000000">
+                <input type="color" id="color-text" value="#e6e6eb">
+            </div>
+        </div>
+        <div class="row">
+            <label>Accent</label>
+            <div class="input-group">
+                <input type="text" id="hex-accent" class="hex-input" placeholder="#000000">
+                <input type="color" id="color-accent" value="#7aa2f7">
+            </div>
+        </div>
+        <div class="row">
+            <label>Border</label>
+            <div class="input-group">
+                <input type="text" id="hex-border" class="hex-input" placeholder="#000000">
+                <input type="color" id="color-border" value="#2a2e3a">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Typography</h3>
+        <div class="row">
+            <label>Font Family</label>
+            <div style="display: flex; gap: 5px; flex: 1; justify-content: flex-end;">
+                <select id="font-family" style="flex:1">
+                    <option value="system-ui">System UI</option>
+                    <option value="'Fira Code', monospace">Monospace</option>
+                    <option value="Georgia, serif">Serif</option>
+                    <option value="Arial, sans-serif">Sans-Serif</option>
+                </select>
+                <button id="btn-upload-font" style="width: auto; padding: 4px 8px;"
+                    title="Загрузить свой шрифт">📁</button>
+            </div>
+        </div>
+        <div class="row">
+            <label>Font Size (px)</label>
+            <input type="number" id="font-size" value="14" min="10" max="24">
+        </div>
+        <div id="custom-font-info"
+            style="font-size: 0.75rem; color: var(--accent); margin-top: 5px; text-align: right; display: none;">
+            Шрифт: <span id="font-display-name"></span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button id="btn-reset">Reset</button>
+        <button id="btn-cancel">Cancel</button>
+        <button id="btn-save" class="primary">Save to Desktop</button>
+    </div>
+
+    <script src="theme-editor.js"></script>
+</body>
+
+</html>

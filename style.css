@@ -1,0 +1,310 @@
+:root {
+    /* Токены по умолчанию (Dark Mode) */
+    --bg-color: #0f1117;
+    --panel-color: #161a23;
+    --text-color: #e6e6eb;
+    --text-muted: #8b8b92;
+    --accent-color: #7aa2f7;
+    --border-color: #2a2e3a;
+    --danger-color: #f7768e;
+    --sidebar-width: 280px;
+    --transition-speed: 0.2s;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-size: 14px;
+}
+
+body.light-mode {
+    --bg-color: #f5f5f7;
+    --panel-color: #ffffff;
+    --text-color: #1d1d1f;
+    --text-muted: #86868b;
+    --accent-color: #0071e3;
+    --border-color: #d2d2d7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow: hidden;
+    transition: background var(--transition-speed), color var(--transition-speed);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--panel-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#new-note-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: filter 0.2s;
+}
+
+#new-note-btn:hover {
+    filter: brightness(1.2);
+}
+
+.search-box {
+    padding: 0 20px 15px;
+}
+
+#search-input {
+    width: 100%;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--text-color);
+    outline: none;
+}
+
+#notes-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.note-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+}
+
+.note-item:hover {
+    background: rgba(122, 162, 247, 0.1);
+}
+
+.note-item.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.note-item.active .note-date {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.note-name {
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.note-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Editor Area */
+.editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    height: 40px;
+    padding: 0;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    -webkit-app-region: drag;
+}
+
+.top-bar .controls,
+.top-bar .note-info,
+.top-bar .window-controls {
+    -webkit-app-region: no-drag;
+}
+
+#note-title {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    outline: none;
+    width: 250px;
+}
+
+.controls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.controls button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.controls button:hover {
+    background: rgba(122, 162, 247, 0.15);
+}
+
+.controls button.danger:hover {
+    background: rgba(247, 118, 142, 0.15);
+    color: var(--danger-color);
+}
+
+select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    outline: none;
+    margin-right: 5px;
+}
+
+/* Window Controls */
+.window-controls {
+    display: flex;
+    height: 100%;
+}
+
+.window-controls button {
+    width: 45px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.window-controls button:hover {
+    background: rgba(122, 162, 247, 0.2);
+}
+
+.window-controls button.win-close-btn:hover {
+    background: #e81123;
+    color: white;
+}
+
+/* Content Layout */
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.editor-pane,
+.preview-pane {
+    flex: 1;
+    height: 100%;
+}
+
+.editor-pane {
+    border-right: 1px solid var(--border-color);
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 20px;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: 'Fira Code', 'Cascadia Code', monospace;
+}
+
+.preview-pane {
+    padding: 20px;
+    overflow-y: auto;
+    background: var(--bg-color);
+}
+
+/* Markdown Styling */
+.markdown-body {
+    line-height: 1.6;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+    margin-bottom: 16px;
+    margin-top: 24px;
+}
+
+.markdown-body code {
+    background: var(--panel-color);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}

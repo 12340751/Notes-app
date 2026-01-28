@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+    <div class="app-container">
+        <!-- Левая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Notes</h2>
+                <button id="new-note-btn" title="Новая заметка">+</button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Поиск по названию или тегам...">
+            </div>
+            <ul id="notes-list">
+                <!-- Заметки загрузятся сюда -->
+            </ul>
+        </aside>
+
+        <!-- Основная область -->
+        <main class="editor-area">
+            <header class="top-bar">
+                <div class="note-info">
+                    <input type="text" id="note-title" placeholder="Название заметки" readonly>
+                </div>
+                <div class="controls">
+                    <select id="theme-select">
+                        <option value="default">Default Theme</option>
+                    </select>
+                    <button id="import-theme-btn" title="Импортировать тему">⤓</button>
+                    <button id="open-editor-btn" title="Редактор тем">✎</button>
+                    <button id="mode-toggle" title="Переключить Light/Dark">◐</button>
+                    <button id="delete-note-btn" title="Удалить заметку" class="danger">✕</button>
+                </div>
+                <div class="window-controls">
+                    <button id="win-min" title="Свернуть">─</button>
+                    <button id="win-max" title="Развернуть">▢</button>
+                    <button id="win-close" title="Закрыть" class="win-close-btn">✕</button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="editor-pane">
+                    <textarea id="markdown-input"
+                        placeholder="Начни писать здесь (Markdown поддерживается)..."></textarea>
+                </div>
+                <div class="preview-pane markdown-body" id="markdown-preview">
+                    <!-- Preview здесь -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Подключаем Marked для рендеринга Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="renderer.js"></script>
+</body>
+
+</html>
